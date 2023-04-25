@@ -1,0 +1,16 @@
+package com.etiya.ecommercedemopair4.business.requests;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class CreateCustomerRequest {
+    private String companyName;
+    private String contactName;
+    private String emailAddress;
+    private String phoneNumber;
+    private String password;
+}
