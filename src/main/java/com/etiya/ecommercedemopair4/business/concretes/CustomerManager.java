@@ -1,5 +1,7 @@
 package com.etiya.ecommercedemopair4.business.concretes;
 
+import com.etiya.ecommercedemopair4.business.requests.UpdateCustomerRequest;
+import com.etiya.ecommercedemopair4.business.responses.GetByIdCustomerResponse;
 import com.etiya.ecommercedemopair4.core.utilities.mappers.ModelMapperService;
 import com.etiya.ecommercedemopair4.repositories.abstracts.CustomerDao;
 import com.etiya.ecommercedemopair4.entities.concretes.Customer;
@@ -34,6 +36,16 @@ public class CustomerManager implements CustomerService {
     }
 
     @Override
+    public GetByIdCustomerResponse getById(int id) {
+        Customer customer = this.customerDao.findById(id).orElseThrow();
+
+        //Customerı, GetByIdCustomerResponse türünde bir class oluşturup, ona çeviriyo
+        GetByIdCustomerResponse response
+                = this.modelMapperService.forResponse().map(customer, GetByIdCustomerResponse.class);
+        return response;
+    }
+
+    @Override
     public void add(CreateCustomerRequest createCustomerRequest) {
 
         //mapper - for request => senin yerine arka planda customerı new liyo,
@@ -41,5 +53,19 @@ public class CustomerManager implements CustomerService {
         // aynı olanları newlediğine aktarıyo
         Customer customer = this.modelMapperService.forRequest().map(createCustomerRequest, Customer.class);
         this.customerDao.save(customer);
+    }
+
+    @Override
+    public void update(UpdateCustomerRequest updateCustomerRequest) {
+        Customer customer = this.modelMapperService.forRequest().map(updateCustomerRequest, Customer.class);
+        this.customerDao.save(customer);
+
+    }
+
+    @Override
+    public void delete(int id) {
+
+        this.customerDao.deleteById(id);
+
     }
 }
