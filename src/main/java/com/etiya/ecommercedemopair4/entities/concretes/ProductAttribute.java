@@ -1,9 +1,9 @@
 package com.etiya.ecommercedemopair4.entities.concretes;
 
 import jakarta.persistence.*;
-import lombok.*;
-
-import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
@@ -25,6 +25,8 @@ public class ProductAttribute {
     @JoinColumn(name = "size_id")
     private Size size;
 
-    @OneToMany(mappedBy = "productAttribute")
-    private List<Product> products;
+    @ManyToOne()
+    @JoinColumn(name = "product_id")
+    private Product product;
+
 }

@@ -1,10 +1,10 @@
 package com.etiya.ecommercedemopair4.api.controllers;
 
 import com.etiya.ecommercedemopair4.business.abstracts.CustomerService;
-import com.etiya.ecommercedemopair4.business.requests.CreateCustomerRequest;
-import com.etiya.ecommercedemopair4.business.requests.UpdateCustomerRequest;
-import com.etiya.ecommercedemopair4.business.responses.GetAllCustomersResponse;
-import com.etiya.ecommercedemopair4.business.responses.GetByIdCustomerResponse;
+import com.etiya.ecommercedemopair4.business.dtos.requests.customer.AddCustomerRequest;
+import com.etiya.ecommercedemopair4.business.dtos.requests.customer.UpdateCustomerRequest;
+import com.etiya.ecommercedemopair4.business.dtos.responses.customer.GetAllCustomersResponse;
+import com.etiya.ecommercedemopair4.business.dtos.responses.customer.GetByIdCustomerResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +30,7 @@ public class CustomersController {
 
     @PostMapping()
     @ResponseStatus(code = HttpStatus.CREATED)
-    public void add(@RequestBody() CreateCustomerRequest createCustomerRequest) {
+    public void add(@RequestBody() AddCustomerRequest createCustomerRequest) {
         this.customerService.add(createCustomerRequest);
     }
 

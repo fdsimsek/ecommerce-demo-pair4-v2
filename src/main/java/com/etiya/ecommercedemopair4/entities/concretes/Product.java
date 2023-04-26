@@ -18,14 +18,6 @@ public class Product {
     private int id;
 
     @ManyToOne()
-    @JoinColumn(name = "product_category_id")
-    private ProductCategory productCategory;
-
-    @ManyToOne()
-    @JoinColumn(name = "product_attributes_id")
-    private ProductAttribute productAttribute;
-
-    @ManyToOne()
     @JoinColumn(name = "supplier_id")
     private Supplier supplier;
 
@@ -43,4 +35,7 @@ public class Product {
 
     @OneToMany(mappedBy = "product")
     private List<ProductCategory> productCategories;
+
+    @OneToMany(mappedBy = "product")
+    private List<ProductAttribute> productAttributes;
 }

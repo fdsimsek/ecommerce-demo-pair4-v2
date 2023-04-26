@@ -11,7 +11,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor // => tüm propertyler ile doldurulmuş bir constructor oluşturur
 @NoArgsConstructor // => 0 parametreli bir consc. oluşturur.
-@Table(name = "product_category")
+@Table(name = "category")
 @Entity
 public class Category {
 
@@ -33,3 +33,13 @@ public class Category {
     @OneToMany(mappedBy = "category")
     private List<SpecialOfferCategory> specialOfferCategories;
 }
+// DTO
+// Data Transfer Object
+
+// CategoryForAddOto => AddCategoryRequest =>
+// private String name;
+
+// Category => name
+
+// Request Response Pattern
+// AddCategoryRequest AddCategoryResponse

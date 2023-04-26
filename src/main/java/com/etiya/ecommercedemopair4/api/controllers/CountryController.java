@@ -1,12 +1,12 @@
 package com.etiya.ecommercedemopair4.api.controllers;
 
 import com.etiya.ecommercedemopair4.business.abstracts.CountrySevice;
-import com.etiya.ecommercedemopair4.entities.concretes.Country;
+import com.etiya.ecommercedemopair4.business.dtos.requests.country.AddCountryRequest;
+import com.etiya.ecommercedemopair4.business.dtos.responses.country.AddCountryResponse;
+import com.etiya.ecommercedemopair4.business.dtos.responses.country.CountryDetailResponse;
+import com.etiya.ecommercedemopair4.business.dtos.responses.country.ListCountryResponse;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,12 +18,17 @@ public class CountryController {
     private CountrySevice countrySevice;
 
     @GetMapping()
-    public List<Country> getAll() {
+    public List<ListCountryResponse> getAll() {
         return countrySevice.getAll();
     }
 
     @PostMapping()
-    public void add(Country country) {
-        countrySevice.add(country);
+    public AddCountryResponse add(AddCountryRequest addCountryRequest) {
+        return countrySevice.add(addCountryRequest);
+    }
+
+    @GetMapping("{id}")
+    public CountryDetailResponse getById(@PathVariable int id) {
+        return countrySevice.getById(id);
     }
 }

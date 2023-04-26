@@ -1,13 +1,13 @@
 package com.etiya.ecommercedemopair4.business.concretes;
 
-import com.etiya.ecommercedemopair4.business.requests.UpdateCustomerRequest;
-import com.etiya.ecommercedemopair4.business.responses.GetByIdCustomerResponse;
+import com.etiya.ecommercedemopair4.business.dtos.requests.customer.UpdateCustomerRequest;
+import com.etiya.ecommercedemopair4.business.dtos.responses.customer.GetByIdCustomerResponse;
 import com.etiya.ecommercedemopair4.core.utilities.mappers.ModelMapperService;
 import com.etiya.ecommercedemopair4.repositories.abstracts.CustomerDao;
 import com.etiya.ecommercedemopair4.entities.concretes.Customer;
 import com.etiya.ecommercedemopair4.business.abstracts.CustomerService;
-import com.etiya.ecommercedemopair4.business.requests.CreateCustomerRequest;
-import com.etiya.ecommercedemopair4.business.responses.GetAllCustomersResponse;
+import com.etiya.ecommercedemopair4.business.dtos.requests.customer.AddCustomerRequest;
+import com.etiya.ecommercedemopair4.business.dtos.responses.customer.GetAllCustomersResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -46,7 +46,7 @@ public class CustomerManager implements CustomerService {
     }
 
     @Override
-    public void add(CreateCustomerRequest createCustomerRequest) {
+    public void add(AddCustomerRequest createCustomerRequest) {
 
         //mapper - for request => senin yerine arka planda customerı new liyo,
         // bütün alanları tek tek karşılaştırıyo,
