@@ -8,18 +8,13 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "product_attribute")
+@Table(name = "size_product")
 @Entity
-public class ProductAttribute {
-
+public class SizeProduct {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private int id;
-
-    @ManyToOne()
-    @JoinColumn(name = "colour_id")
-    private Colour colour;
 
     @ManyToOne()
     @JoinColumn(name = "size_id")

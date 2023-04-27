@@ -37,5 +37,8 @@ public class Product {
     private List<ProductCategory> productCategories;
 
     @OneToMany(mappedBy = "product")
-    private List<ProductAttribute> productAttributes;
+    private List<SizeProduct> sizeProducts;
+
+    @OneToMany(mappedBy = "product")
+    private List<ColourProduct> colourProducts;
 }

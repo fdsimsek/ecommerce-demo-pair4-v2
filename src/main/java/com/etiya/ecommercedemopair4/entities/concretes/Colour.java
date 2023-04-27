@@ -21,5 +21,5 @@ public class Colour {
     private String colourName;
 
     @OneToMany(mappedBy = "colour")
-    private List<ProductAttribute> productAttributes;
+    private List<ColourProduct> colourProducts;
 }

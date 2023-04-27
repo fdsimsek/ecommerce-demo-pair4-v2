@@ -6,7 +6,6 @@ import com.etiya.ecommercedemopair4.business.dtos.responses.product.AddProductRe
 import com.etiya.ecommercedemopair4.business.dtos.responses.product.ListProductResponse;
 import com.etiya.ecommercedemopair4.business.dtos.responses.product.ProductDetailResponse;
 import com.etiya.ecommercedemopair4.entities.concretes.Product;
-import com.etiya.ecommercedemopair4.entities.concretes.ProductAttribute;
 import com.etiya.ecommercedemopair4.entities.concretes.Supplier;
 import com.etiya.ecommercedemopair4.repositories.abstracts.ProductDao;
 import lombok.AllArgsConstructor;
