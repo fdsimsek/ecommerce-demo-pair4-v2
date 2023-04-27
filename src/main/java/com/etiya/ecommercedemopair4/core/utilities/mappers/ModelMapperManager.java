@@ -27,4 +27,5 @@ public class ModelMapperManager implements ModelMapperService {
                 .setMatchingStrategy(MatchingStrategies.STANDARD);
         return this.modelMapper;
     }
+
 }

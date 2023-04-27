@@ -5,6 +5,7 @@ import com.etiya.ecommercedemopair4.business.dtos.requests.product.AddProductReq
 import com.etiya.ecommercedemopair4.business.dtos.responses.product.AddProductResponse;
 import com.etiya.ecommercedemopair4.business.dtos.responses.product.ListProductResponse;
 import com.etiya.ecommercedemopair4.business.dtos.responses.product.ProductDetailResponse;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +18,7 @@ public class ProductsController {
     private ProductService productService;
 
     @PostMapping()
-    public AddProductResponse add(AddProductRequest addProductRequest) {
+    public AddProductResponse add(@Valid AddProductRequest addProductRequest) {
         return productService.add(addProductRequest);
     }
 

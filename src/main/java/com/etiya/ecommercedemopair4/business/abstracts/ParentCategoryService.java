@@ -1,12 +1,17 @@
 package com.etiya.ecommercedemopair4.business.abstracts;
 
-import com.etiya.ecommercedemopair4.entities.concretes.ParentCategory;
+import com.etiya.ecommercedemopair4.business.dtos.requests.parentCategory.AddParentCategoryRequest;
+import com.etiya.ecommercedemopair4.business.dtos.responses.parentCategory.AddParentCategoryResponse;
+import com.etiya.ecommercedemopair4.business.dtos.responses.parentCategory.ListParentCategoryResponse;
+import com.etiya.ecommercedemopair4.business.dtos.responses.parentCategory.ParentCategoryDetailResponse;
 
 import java.util.List;
 
 public interface ParentCategoryService {
 
-    List<ParentCategory> getAll();
+    List<ListParentCategoryResponse> getAll();
 
-    void add(ParentCategory parentCategory);
+    AddParentCategoryResponse add(AddParentCategoryRequest addParentCategoryRequest);
+
+    ParentCategoryDetailResponse getById(int id);
 }

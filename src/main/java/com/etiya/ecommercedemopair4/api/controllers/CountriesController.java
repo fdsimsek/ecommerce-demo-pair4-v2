@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/countries")
 @AllArgsConstructor
-public class CountryController {
+public class CountriesController {
 
     private CountrySevice countrySevice;
 

@@ -6,9 +6,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @SpringBootApplication
 @RestControllerAdvice
@@ -26,6 +31,18 @@ public class EcommerceDemoPair4Application {
 	@ExceptionHandler({BusinessException.class})
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 	public String handleBusinessException(BusinessException businessException) {
-		return "HATA";
+		return businessException.getMessage();
+	}
+
+	@ExceptionHandler({MethodArgumentNotValidException.class})
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	public String handleValidationException(MethodArgumentNotValidException exception) {
+		//gelen exceptiondaki validasyon hatalarını oku liste olarak kullanıcıya göster
+		Map<String, String> errors = new HashMap<>();
+
+		for (FieldError fieldError : exception.getBindingResult().getFieldErrors()) {
+			errors.put(fieldError.getField(), fieldError.getDefaultMessage());
+		}
+		return "Validasyon Hatası";
 	}
 }

@@ -1,6 +1,9 @@
 package com.etiya.ecommercedemopair4.business.dtos.requests.category;
 
-import com.etiya.ecommercedemopair4.entities.concretes.ParentCategory;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,6 +12,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AddCategoryRequest {
-    private ParentCategory parentCategory;
+    @NotBlank(message = "Parent Category alanı boş bırakılamaz")
+    @NotNull(message = "Parent Category alanı boş bırakılamaz")
+    @Min(1)
+    private int parentCategoryId;
+    @NotBlank(message = "Name alanı boş bırakılamaz")
+    @NotNull(message = "Name alanı boş bırakılamaz")
+    //@Length(min = 2, message = "Name alanı 2 karakterden kısa olamaz.")
+    @Size(min= 2, message = "Name alanı 2 karakterden kısa olamaz.")
     private String categoryName;
 }

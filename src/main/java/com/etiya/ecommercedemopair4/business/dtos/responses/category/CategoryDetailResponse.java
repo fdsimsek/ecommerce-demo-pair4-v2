@@ -1,14 +1,11 @@
 package com.etiya.ecommercedemopair4.business.dtos.responses.category;
 
-import com.etiya.ecommercedemopair4.entities.concretes.ParentCategory;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
-public class ListCategoryResponse {
+public class CategoryDetailResponse {
     private int id;
     private int parentCategoryId;
     private String categoryName;
