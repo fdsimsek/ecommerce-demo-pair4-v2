@@ -25,7 +25,7 @@ public class EcommerceDemoPair4Application {
 
 	@ExceptionHandler({BusinessException.class})
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-	public String handleBusinessException(BusinessException exception) {
+	public String handleBusinessException(BusinessException businessException) {
 		return "HATA";
 	}
 }
