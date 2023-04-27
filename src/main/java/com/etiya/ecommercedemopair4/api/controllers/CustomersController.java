@@ -30,8 +30,8 @@ public class CustomersController {
 
     @PostMapping()
     @ResponseStatus(code = HttpStatus.CREATED)
-    public void add(@RequestBody() AddCustomerRequest createCustomerRequest) {
-        this.customerService.add(createCustomerRequest);
+    public void add(@RequestBody() AddCustomerRequest addCustomerRequest) {
+        this.customerService.add(addCustomerRequest);
     }
 
     @PutMapping()

@@ -10,7 +10,7 @@ import java.util.List;
 public interface CustomerService {
     List<GetAllCustomersResponse> getAll();
     GetByIdCustomerResponse getById(int id);
-    void add(AddCustomerRequest createCustomerRequest);
+    void add(AddCustomerRequest addCustomerRequest);
     void update(UpdateCustomerRequest updateCustomerRequest);
     void delete(int id);
 }

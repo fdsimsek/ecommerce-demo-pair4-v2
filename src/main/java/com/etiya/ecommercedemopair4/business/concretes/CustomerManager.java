@@ -46,12 +46,12 @@ public class CustomerManager implements CustomerService {
     }
 
     @Override
-    public void add(AddCustomerRequest createCustomerRequest) {
+    public void add(AddCustomerRequest addCustomerRequest) {
 
         //mapper - for request => senin yerine arka planda customerı new liyo,
         // bütün alanları tek tek karşılaştırıyo,
         // aynı olanları newlediğine aktarıyo
-        Customer customer = this.modelMapperService.forRequest().map(createCustomerRequest, Customer.class);
+        Customer customer = this.modelMapperService.forRequest().map(addCustomerRequest, Customer.class);
         this.customerDao.save(customer);
     }
 
