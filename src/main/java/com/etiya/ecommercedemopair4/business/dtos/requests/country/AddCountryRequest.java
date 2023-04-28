@@ -1,9 +1,10 @@
 package com.etiya.ecommercedemopair4.business.dtos.requests.country;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 @AllArgsConstructor
 public class AddCountryRequest {
     private String countryName;

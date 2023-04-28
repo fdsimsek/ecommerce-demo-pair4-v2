@@ -3,10 +3,11 @@ package com.etiya.ecommercedemopair4.business.dtos.requests.parentCategory;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
 @AllArgsConstructor
 public class AddParentCategoryRequest {
     @NotBlank(message = "Name alanı boş bırakılamaz")
