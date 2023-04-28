@@ -1,6 +1,11 @@
 package com.etiya.ecommercedemopair4.business.concretes;
 
 import com.etiya.ecommercedemopair4.business.abstracts.AddressService;
+import com.etiya.ecommercedemopair4.business.dtos.requests.address.AddAddressRequest;
+import com.etiya.ecommercedemopair4.business.dtos.responses.address.AddAddressResponse;
+import com.etiya.ecommercedemopair4.business.dtos.responses.address.AddressDetailResponse;
+import com.etiya.ecommercedemopair4.business.dtos.responses.address.ListAddressResponse;
+import com.etiya.ecommercedemopair4.core.utilities.mappers.ModelMapperService;
 import com.etiya.ecommercedemopair4.entities.concretes.Address;
 import com.etiya.ecommercedemopair4.repositories.abstracts.AddressDao;
 import lombok.AllArgsConstructor;
@@ -12,17 +17,28 @@ import java.util.List;
 @AllArgsConstructor
 public class AddressManager implements AddressService {
     private AddressDao addressDao;
+    private ModelMapperService modelMapperService;
 
     @Override
-    public List<Address> getAll() {
-        return addressDao.findAll();
+    public List<ListAddressResponse> getAll() {
+        return addressDao.getAll();
     }
 
     @Override
-    public void add(Address address) {
-        Address addressToFind = addressDao.findByAddressField(address.getAddressField());
-        if(addressToFind != null)
-            return;
-        addressDao.save(address);
+    public AddAddressResponse add(AddAddressRequest addAddressRequest) {
+
+        Address address = this.modelMapperService.forRequest().map(addAddressRequest, Address.class);
+        this.addressDao.save(address);
+
+        AddAddressResponse response = this.modelMapperService.forResponse().map(address, AddAddressResponse.class);
+        return response;
     }
+
+    @Override
+    public AddressDetailResponse getById(int id) {
+        return addressDao.getById(id);
+    }
+
+
+
 }

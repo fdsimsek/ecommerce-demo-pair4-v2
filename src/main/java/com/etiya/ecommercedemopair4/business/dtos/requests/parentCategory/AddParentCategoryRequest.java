@@ -12,5 +12,5 @@ public class AddParentCategoryRequest {
     @NotBlank(message = "Name alanı boş bırakılamaz")
     @NotNull(message = "Name alanı boş bırakılamaz")
     @Size(min= 2, message = "Name alanı 2 karakterden kısa olamaz.")
-    private String name;
+    private String parentCategoryName;
 }

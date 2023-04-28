@@ -2,13 +2,9 @@ package com.etiya.ecommercedemopair4.api.controllers;
 
 import com.etiya.ecommercedemopair4.business.abstracts.ParentCategoryService;
 import com.etiya.ecommercedemopair4.business.dtos.requests.parentCategory.AddParentCategoryRequest;
-import com.etiya.ecommercedemopair4.business.dtos.requests.product.AddProductRequest;
 import com.etiya.ecommercedemopair4.business.dtos.responses.parentCategory.AddParentCategoryResponse;
 import com.etiya.ecommercedemopair4.business.dtos.responses.parentCategory.ListParentCategoryResponse;
 import com.etiya.ecommercedemopair4.business.dtos.responses.parentCategory.ParentCategoryDetailResponse;
-import com.etiya.ecommercedemopair4.business.dtos.responses.product.AddProductResponse;
-import com.etiya.ecommercedemopair4.business.dtos.responses.product.ProductDetailResponse;
-import com.etiya.ecommercedemopair4.entities.concretes.ParentCategory;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +24,7 @@ public class ParentCategoriesController {
     }
 
     @PostMapping()
-    public AddParentCategoryResponse add(@Valid AddParentCategoryRequest addParentCategoryRequest) {
+    public AddParentCategoryResponse add(@Valid @RequestBody AddParentCategoryRequest addParentCategoryRequest) {
         return parentCategoryService.add(addParentCategoryRequest);
     }
 

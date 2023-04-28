@@ -36,13 +36,13 @@ public class EcommerceDemoPair4Application {
 
 	@ExceptionHandler({MethodArgumentNotValidException.class})
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
-	public String handleValidationException(MethodArgumentNotValidException exception) {
+	public Object handleValidationException(MethodArgumentNotValidException exception) {
 		//gelen exceptiondaki validasyon hatalarını oku liste olarak kullanıcıya göster
 		Map<String, String> errors = new HashMap<>();
 
 		for (FieldError fieldError : exception.getBindingResult().getFieldErrors()) {
 			errors.put(fieldError.getField(), fieldError.getDefaultMessage());
 		}
-		return "Validasyon Hatası";
+		return errors;
 	}
 }

@@ -10,7 +10,8 @@ import java.util.List;
 
 public interface ProductDao extends JpaRepository<Product, Integer> {
     @Query(value = "SELECT new " +
-            "com.etiya.ecommercedemopair4.business.dtos.responses.product.ListProductResponse(p.id, p.name, p.description, s.companyName)" +
+            "com.etiya.ecommercedemopair4.business.dtos.responses.product" +
+            ".ListProductResponse(p.id, p.name, p.description, s.companyName)" +
             " from Product p JOIN p.supplier s")
     List<ListProductResponse> getAll();
 

@@ -5,6 +5,7 @@ import com.etiya.ecommercedemopair4.business.dtos.requests.country.AddCountryReq
 import com.etiya.ecommercedemopair4.business.dtos.responses.country.AddCountryResponse;
 import com.etiya.ecommercedemopair4.business.dtos.responses.country.CountryDetailResponse;
 import com.etiya.ecommercedemopair4.business.dtos.responses.country.ListCountryResponse;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +24,7 @@ public class CountriesController {
     }
 
     @PostMapping()
-    public AddCountryResponse add(AddCountryRequest addCountryRequest) {
+    public AddCountryResponse add(@Valid @RequestBody AddCountryRequest addCountryRequest) {
         return countrySevice.add(addCountryRequest);
     }
 

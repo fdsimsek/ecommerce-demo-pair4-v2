@@ -5,7 +5,6 @@ import com.etiya.ecommercedemopair4.business.dtos.requests.category.AddCategoryR
 import com.etiya.ecommercedemopair4.business.dtos.responses.category.AddCategoryResponse;
 import com.etiya.ecommercedemopair4.business.dtos.responses.category.CategoryDetailResponse;
 import com.etiya.ecommercedemopair4.business.dtos.responses.category.ListCategoryResponse;
-import com.etiya.ecommercedemopair4.business.dtos.responses.product.ProductDetailResponse;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +25,7 @@ public class CategoriesController {
     }
 
     @PostMapping()
-    public AddCategoryResponse add(@Valid AddCategoryRequest addCategoryRequest) throws Exception{
+    public AddCategoryResponse add(@Valid @RequestBody AddCategoryRequest addCategoryRequest) throws Exception{
         return categoryService.add(addCategoryRequest);
     }
 

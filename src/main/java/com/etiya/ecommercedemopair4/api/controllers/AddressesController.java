@@ -1,14 +1,17 @@
 package com.etiya.ecommercedemopair4.api.controllers;
 
 import com.etiya.ecommercedemopair4.business.abstracts.AddressService;
+import com.etiya.ecommercedemopair4.business.dtos.requests.address.AddAddressRequest;
+import com.etiya.ecommercedemopair4.business.dtos.responses.address.AddAddressResponse;
+import com.etiya.ecommercedemopair4.business.dtos.responses.address.AddressDetailResponse;
+import com.etiya.ecommercedemopair4.business.dtos.responses.address.ListAddressResponse;
+import com.etiya.ecommercedemopair4.business.dtos.responses.product.ListProductResponse;
 import com.etiya.ecommercedemopair4.entities.concretes.Address;
 import com.etiya.ecommercedemopair4.entities.concretes.Category;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,13 +23,18 @@ public class AddressesController {
     private AddressService addressService;
 
     @GetMapping()
-    public List<Address> getAll()  {
+    public List<ListAddressResponse> getAll()  {
         return addressService.getAll();
     }
 
     @PostMapping()
-    public void add(Address address) {
-        addressService.add(address);
+    public AddAddressResponse add(@Valid @RequestBody AddAddressRequest addAddressRequest) {
+       return addressService.add(addAddressRequest);
+    }
+
+    @GetMapping("{id}")
+    public AddressDetailResponse getById(@PathVariable int id) {
+        return  addressService.getById(id);
     }
 
 }

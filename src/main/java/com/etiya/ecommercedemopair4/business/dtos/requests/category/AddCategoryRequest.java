@@ -12,8 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AddCategoryRequest {
-    @NotBlank(message = "Parent Category alanı boş bırakılamaz")
-    @NotNull(message = "Parent Category alanı boş bırakılamaz")
+
     @Min(1)
     private int parentCategoryId;
     @NotBlank(message = "Name alanı boş bırakılamaz")

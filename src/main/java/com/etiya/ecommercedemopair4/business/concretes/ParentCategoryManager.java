@@ -29,10 +29,10 @@ public class ParentCategoryManager implements ParentCategoryService {
     @Override
     public AddParentCategoryResponse add(AddParentCategoryRequest addParentCategoryRequest) {
 
-        ParentCategory parentCategory = modelMapperService.forRequest().map(addParentCategoryRequest, ParentCategory.class);
+        ParentCategory parentCategory = this.modelMapperService.forRequest().map(addParentCategoryRequest, ParentCategory.class);
         parentCategoryDao.save(parentCategory);
 
-        AddParentCategoryResponse response = modelMapperService.forResponse().map(parentCategory, AddParentCategoryResponse.class);
+        AddParentCategoryResponse response = this.modelMapperService.forResponse().map(parentCategory, AddParentCategoryResponse.class);
         return response;
     }
 

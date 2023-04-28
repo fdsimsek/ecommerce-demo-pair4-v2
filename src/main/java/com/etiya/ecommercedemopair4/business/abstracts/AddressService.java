@@ -1,11 +1,16 @@
 package com.etiya.ecommercedemopair4.business.abstracts;
 
-import com.etiya.ecommercedemopair4.entities.concretes.Address;
+import com.etiya.ecommercedemopair4.business.dtos.requests.address.AddAddressRequest;
+import com.etiya.ecommercedemopair4.business.dtos.responses.address.AddAddressResponse;
+import com.etiya.ecommercedemopair4.business.dtos.responses.address.AddressDetailResponse;
+import com.etiya.ecommercedemopair4.business.dtos.responses.address.ListAddressResponse;
 
 import java.util.List;
 
 public interface AddressService {
-    List<Address> getAll();
+    List<ListAddressResponse> getAll();
 
-    void add(Address address);
+    AddAddressResponse add(AddAddressRequest addAddressRequest);
+
+    AddressDetailResponse getById(int id);
 }
