@@ -66,14 +66,14 @@ public class EcommerceDemoPair4Application {
 
 	@ExceptionHandler({MethodArgumentNotValidException.class})
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
-	public DataResult handleValidationException(MethodArgumentNotValidException exception) {
+	public DataResult<Object> handleValidationException(MethodArgumentNotValidException exception) {
 		//gelen exceptiondaki validasyon hatalarını oku liste olarak kullanıcıya göster
 		Map<String, String> errors = new HashMap<>();
 
 		for (FieldError fieldError : exception.getBindingResult().getFieldErrors()) {
 			errors.put(fieldError.getField(), fieldError.getDefaultMessage());
 		}
-		return new ErrorDataResult(errors);
+		return new ErrorDataResult<Object>(errors, "Validasyon Hatası");
 	}
 }
 // Unit Test => Mock, Business Kodlar
