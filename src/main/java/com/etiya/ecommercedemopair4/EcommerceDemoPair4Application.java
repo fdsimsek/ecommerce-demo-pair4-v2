@@ -1,6 +1,8 @@
 package com.etiya.ecommercedemopair4;
 
 import com.etiya.ecommercedemopair4.core.exceptions.BusinessException;
+import com.etiya.ecommercedemopair4.core.utilities.result.DataResult;
+import com.etiya.ecommercedemopair4.core.utilities.result.ErrorDataResult;
 import com.etiya.ecommercedemopair4.core.utilities.result.ErrorResult;
 import com.etiya.ecommercedemopair4.core.utilities.result.Result;
 import org.modelmapper.ModelMapper;
@@ -64,14 +66,14 @@ public class EcommerceDemoPair4Application {
 
 	@ExceptionHandler({MethodArgumentNotValidException.class})
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
-	public Object handleValidationException(MethodArgumentNotValidException exception) {
+	public DataResult handleValidationException(MethodArgumentNotValidException exception) {
 		//gelen exceptiondaki validasyon hatalarını oku liste olarak kullanıcıya göster
 		Map<String, String> errors = new HashMap<>();
 
 		for (FieldError fieldError : exception.getBindingResult().getFieldErrors()) {
 			errors.put(fieldError.getField(), fieldError.getDefaultMessage());
 		}
-		return errors;
+		return new ErrorDataResult(errors);
 	}
 }
 // Unit Test => Mock, Business Kodlar
