@@ -4,13 +4,14 @@ import com.etiya.ecommercedemopair4.business.dtos.requests.address.AddAddressReq
 import com.etiya.ecommercedemopair4.business.dtos.responses.address.AddAddressResponse;
 import com.etiya.ecommercedemopair4.business.dtos.responses.address.AddressDetailResponse;
 import com.etiya.ecommercedemopair4.business.dtos.responses.address.ListAddressResponse;
+import com.etiya.ecommercedemopair4.core.utilities.result.DataResult;
 
 import java.util.List;
 
 public interface AddressService {
     List<ListAddressResponse> getAll();
 
-    AddAddressResponse add(AddAddressRequest addAddressRequest);
+    DataResult<AddAddressResponse> add(AddAddressRequest addAddressRequest);
 
     AddressDetailResponse getById(int id);
 }

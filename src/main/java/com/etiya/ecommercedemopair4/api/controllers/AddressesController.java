@@ -6,6 +6,7 @@ import com.etiya.ecommercedemopair4.business.dtos.responses.address.AddAddressRe
 import com.etiya.ecommercedemopair4.business.dtos.responses.address.AddressDetailResponse;
 import com.etiya.ecommercedemopair4.business.dtos.responses.address.ListAddressResponse;
 import com.etiya.ecommercedemopair4.business.dtos.responses.product.ListProductResponse;
+import com.etiya.ecommercedemopair4.core.utilities.result.DataResult;
 import com.etiya.ecommercedemopair4.entities.concretes.Address;
 import com.etiya.ecommercedemopair4.entities.concretes.Category;
 import jakarta.validation.Valid;
@@ -28,7 +29,7 @@ public class AddressesController {
     }
 
     @PostMapping()
-    public AddAddressResponse add(@Valid @RequestBody AddAddressRequest addAddressRequest) {
+    public DataResult<AddAddressResponse> add(@Valid @RequestBody AddAddressRequest addAddressRequest) {
        return addressService.add(addAddressRequest);
     }
 

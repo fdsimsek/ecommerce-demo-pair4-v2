@@ -6,6 +6,7 @@ import com.etiya.ecommercedemopair4.business.dtos.responses.address.AddAddressRe
 import com.etiya.ecommercedemopair4.business.dtos.responses.address.AddressDetailResponse;
 import com.etiya.ecommercedemopair4.business.dtos.responses.address.ListAddressResponse;
 import com.etiya.ecommercedemopair4.core.utilities.mappers.ModelMapperService;
+import com.etiya.ecommercedemopair4.core.utilities.result.DataResult;
 import com.etiya.ecommercedemopair4.entities.concretes.Address;
 import com.etiya.ecommercedemopair4.repositories.abstracts.AddressDao;
 import lombok.AllArgsConstructor;
@@ -25,13 +26,13 @@ public class AddressManager implements AddressService {
     }
 
     @Override
-    public AddAddressResponse add(AddAddressRequest addAddressRequest) {
+    public DataResult<AddAddressResponse> add(AddAddressRequest addAddressRequest) {
 
         Address address = this.modelMapperService.forRequest().map(addAddressRequest, Address.class);
         this.addressDao.save(address);
 
         AddAddressResponse response = this.modelMapperService.forResponse().map(address, AddAddressResponse.class);
-        return response;
+        return new DataResult<AddAddressResponse>(response, true, "Adres eklendi");
     }
 
     @Override

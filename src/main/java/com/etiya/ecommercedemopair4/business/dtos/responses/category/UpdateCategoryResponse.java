@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AddCategoryResponse {
+public class UpdateCategoryResponse {
     private int id;
     private ParentCategory parentCategory;
     private String categoryName;

@@ -5,6 +5,7 @@ import com.etiya.ecommercedemopair4.business.dtos.requests.country.AddCountryReq
 import com.etiya.ecommercedemopair4.business.dtos.responses.country.AddCountryResponse;
 import com.etiya.ecommercedemopair4.business.dtos.responses.country.CountryDetailResponse;
 import com.etiya.ecommercedemopair4.business.dtos.responses.country.ListCountryResponse;
+import com.etiya.ecommercedemopair4.core.utilities.result.DataResult;
 import com.etiya.ecommercedemopair4.entities.concretes.Country;
 import com.etiya.ecommercedemopair4.repositories.abstracts.CountryDao;
 import lombok.AllArgsConstructor;
@@ -24,7 +25,7 @@ public class CountryManager implements CountrySevice {
     }
 
     @Override
-    public AddCountryResponse add(AddCountryRequest addCountryRequest) {
+    public DataResult<AddCountryResponse> add(AddCountryRequest addCountryRequest) {
 
         Country country = new Country();
         country.setCountryName(addCountryRequest.getCountryName());
@@ -32,7 +33,7 @@ public class CountryManager implements CountrySevice {
         countryDao.save(country);
 
         AddCountryResponse response = new AddCountryResponse(country.getId(), country.getCountryName());
-        return response;
+        return new DataResult<AddCountryResponse>(response, true, "Ülke eklendi.");
 
     }
 
