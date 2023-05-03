@@ -1,9 +1,9 @@
 package com.etiya.ecommercedemopair4.business.abstracts;
 
-import com.etiya.ecommercedemopair4.business.dtos.requests.shippingmethod.AddShippingMethodRequest;
-import com.etiya.ecommercedemopair4.business.dtos.responses.shippingmethod.AddShippingMethodResponse;
-import com.etiya.ecommercedemopair4.business.dtos.responses.shippingmethod.ListShippingMethodResponse;
-import com.etiya.ecommercedemopair4.business.dtos.responses.shippingmethod.ShippingMethodDetailResponse;
+import com.etiya.ecommercedemopair4.business.dtos.requests.shippingMethod.AddShippingMethodRequest;
+import com.etiya.ecommercedemopair4.business.dtos.responses.shippingMethod.AddShippingMethodResponse;
+import com.etiya.ecommercedemopair4.business.dtos.responses.shippingMethod.ListShippingMethodResponse;
+import com.etiya.ecommercedemopair4.business.dtos.responses.shippingMethod.ShippingMethodDetailResponse;
 import com.etiya.ecommercedemopair4.core.utilities.result.DataResult;
 
 import java.util.List;

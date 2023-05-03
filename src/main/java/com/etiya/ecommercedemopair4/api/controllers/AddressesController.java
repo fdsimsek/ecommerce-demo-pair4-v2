@@ -5,13 +5,12 @@ import com.etiya.ecommercedemopair4.business.dtos.requests.address.AddAddressReq
 import com.etiya.ecommercedemopair4.business.dtos.responses.address.AddAddressResponse;
 import com.etiya.ecommercedemopair4.business.dtos.responses.address.AddressDetailResponse;
 import com.etiya.ecommercedemopair4.business.dtos.responses.address.ListAddressResponse;
-import com.etiya.ecommercedemopair4.business.dtos.responses.product.ListProductResponse;
 import com.etiya.ecommercedemopair4.core.utilities.result.DataResult;
-import com.etiya.ecommercedemopair4.entities.concretes.Address;
-import com.etiya.ecommercedemopair4.entities.concretes.Category;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,8 +23,15 @@ public class AddressesController {
     private AddressService addressService;
 
     @GetMapping()
-    public List<ListAddressResponse> getAll()  {
+    public DataResult<List<ListAddressResponse>> getAll()  {
         return addressService.getAll();
+    }
+
+    @GetMapping("getWithPagination")
+    public DataResult<Page<ListAddressResponse>> getAll(@RequestParam("page") int page, @RequestParam("pageSize") int pageSize) {
+        Pageable pageable = PageRequest.of(page, pageSize);
+        //Business katmanı
+        return addressService.getAllWithPagination(pageable);
     }
 
     @PostMapping()
@@ -34,7 +40,7 @@ public class AddressesController {
     }
 
     @GetMapping("{id}")
-    public AddressDetailResponse getById(@PathVariable int id) {
+    public DataResult<AddressDetailResponse> getById(@PathVariable int id) {
         return  addressService.getById(id);
     }
 

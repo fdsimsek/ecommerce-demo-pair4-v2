@@ -9,14 +9,14 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class AddAddressRequest {
-    @NotBlank(message = "Adres alanı boş bırakılamaz")
-    @NotNull(message = "Adres alanı boş bırakılamaz")
+    @NotBlank(message = "{addressCanNotBeEmpty}")
+    @NotNull(message = "{addressCanNotBeEmpty}")
     private String addressField;
-    @NotBlank(message = "Şehir alanı boş bırakılamaz")
-    @NotNull(message = "Şehir alanı boş bırakılamaz")
+    @NotBlank(message = "{cityCanNotBeEmpty}")
+    @NotNull(message = "{cityCanNotBeEmpty}")
     private String city;
-    @NotBlank(message = "Şehir alanı boş bırakılamaz")
-    @NotNull(message = "Şehir alanı boş bırakılamaz")
+    @NotBlank(message = "{postalCodeCanNotBeEmpty}")
+    @NotNull(message = "{postalCodeCanNotBeEmpty}")
     private String postalCode;
     @Min(1)
     private int countryId;

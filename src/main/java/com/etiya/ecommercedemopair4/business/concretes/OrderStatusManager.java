@@ -1,10 +1,12 @@
 package com.etiya.ecommercedemopair4.business.concretes;
 
 import com.etiya.ecommercedemopair4.business.abstracts.OrderStatusService;
-import com.etiya.ecommercedemopair4.business.dtos.requests.orderstatus.AddOrderStatusRequest;
-import com.etiya.ecommercedemopair4.business.dtos.responses.orderstatus.AddOrderStatusResponse;
-import com.etiya.ecommercedemopair4.business.dtos.responses.orderstatus.ListOrderStatusResponse;
-import com.etiya.ecommercedemopair4.business.dtos.responses.orderstatus.OrderStatusDetailResponse;
+import com.etiya.ecommercedemopair4.business.constants.Messages;
+import com.etiya.ecommercedemopair4.business.dtos.requests.orderStatus.AddOrderStatusRequest;
+import com.etiya.ecommercedemopair4.business.dtos.responses.orderStatus.AddOrderStatusResponse;
+import com.etiya.ecommercedemopair4.business.dtos.responses.orderStatus.ListOrderStatusResponse;
+import com.etiya.ecommercedemopair4.business.dtos.responses.orderStatus.OrderStatusDetailResponse;
+import com.etiya.ecommercedemopair4.core.internationalization.MessageService;
 import com.etiya.ecommercedemopair4.core.utilities.mappers.ModelMapperService;
 import com.etiya.ecommercedemopair4.core.utilities.result.DataResult;
 import com.etiya.ecommercedemopair4.core.utilities.result.SuccessDataResult;
@@ -19,9 +21,11 @@ import java.util.List;
 @AllArgsConstructor
 public class OrderStatusManager implements OrderStatusService {
 
-    private OrderStatusDao orderStatusDao;
+    private final OrderStatusDao orderStatusDao;
 
-    private ModelMapperService modelMapperService;
+    private final ModelMapperService modelMapperService;
+
+    private final MessageService messageService;
 
     @Override
     public List<ListOrderStatusResponse> getAll() {
@@ -36,7 +40,7 @@ public class OrderStatusManager implements OrderStatusService {
 
         AddOrderStatusResponse response = modelMapperService.forResponse().map(orderStatus, AddOrderStatusResponse.class);
 
-        return new SuccessDataResult<>(response, "Sipariş statüsü eklendi");
+        return new SuccessDataResult<>(response, messageService.getMessage(Messages.OrderStatus.OrderStatusAdded));
     }
 
     @Override

@@ -11,12 +11,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UpdateCategoryRequest {
-    @NotBlank(message = "Değiştirmek istediğiniz kategorinin id sini giriniz")
-    @NotNull(message = "Değiştirmek istediğiniz kategorinin id sini giriniz")
+
     private int id;
     @Min(1)
     private int parentCategoryId;
-    @NotBlank(message = "Name alanı boş bırakılamaz")
-    @NotNull(message = "Name alanı boş bırakılamaz")
+
     private String categoryName;
 }

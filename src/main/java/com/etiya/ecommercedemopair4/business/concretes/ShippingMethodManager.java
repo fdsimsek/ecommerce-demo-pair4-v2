@@ -1,10 +1,12 @@
 package com.etiya.ecommercedemopair4.business.concretes;
 
 import com.etiya.ecommercedemopair4.business.abstracts.ShippingMethodService;
-import com.etiya.ecommercedemopair4.business.dtos.requests.shippingmethod.AddShippingMethodRequest;
-import com.etiya.ecommercedemopair4.business.dtos.responses.shippingmethod.AddShippingMethodResponse;
-import com.etiya.ecommercedemopair4.business.dtos.responses.shippingmethod.ListShippingMethodResponse;
-import com.etiya.ecommercedemopair4.business.dtos.responses.shippingmethod.ShippingMethodDetailResponse;
+import com.etiya.ecommercedemopair4.business.constants.Messages;
+import com.etiya.ecommercedemopair4.business.dtos.requests.shippingMethod.AddShippingMethodRequest;
+import com.etiya.ecommercedemopair4.business.dtos.responses.shippingMethod.AddShippingMethodResponse;
+import com.etiya.ecommercedemopair4.business.dtos.responses.shippingMethod.ListShippingMethodResponse;
+import com.etiya.ecommercedemopair4.business.dtos.responses.shippingMethod.ShippingMethodDetailResponse;
+import com.etiya.ecommercedemopair4.core.internationalization.MessageService;
 import com.etiya.ecommercedemopair4.core.utilities.mappers.ModelMapperService;
 import com.etiya.ecommercedemopair4.core.utilities.result.DataResult;
 import com.etiya.ecommercedemopair4.core.utilities.result.SuccessDataResult;
@@ -19,10 +21,11 @@ import java.util.List;
 @AllArgsConstructor
 public class ShippingMethodManager implements ShippingMethodService {
 
-    private ShippingMethodDao shippingMethodDao;
+    private final ShippingMethodDao shippingMethodDao;
 
-    private ModelMapperService modelMapperService;
+    private final ModelMapperService modelMapperService;
 
+    private final MessageService messageService;
     @Override
     public List<ListShippingMethodResponse> getAll() {
         return shippingMethodDao.getAll();
@@ -36,7 +39,7 @@ public class ShippingMethodManager implements ShippingMethodService {
 
         AddShippingMethodResponse response = modelMapperService.forResponse().map(shippingMethod, AddShippingMethodResponse.class);
 
-        return new SuccessDataResult<>(response, "Kargo firması eklendi");
+        return new SuccessDataResult<>(response, messageService.getMessage(Messages.ShippingMethod.ShippingMethodAdded));
     }
 
     @Override

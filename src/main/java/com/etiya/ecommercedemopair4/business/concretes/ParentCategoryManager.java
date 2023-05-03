@@ -1,10 +1,12 @@
 package com.etiya.ecommercedemopair4.business.concretes;
 
 import com.etiya.ecommercedemopair4.business.abstracts.ParentCategoryService;
+import com.etiya.ecommercedemopair4.business.constants.Messages;
 import com.etiya.ecommercedemopair4.business.dtos.requests.parentCategory.AddParentCategoryRequest;
-import com.etiya.ecommercedemopair4.business.dtos.responses.parentcategory.AddParentCategoryResponse;
-import com.etiya.ecommercedemopair4.business.dtos.responses.parentcategory.ListParentCategoryResponse;
-import com.etiya.ecommercedemopair4.business.dtos.responses.parentcategory.ParentCategoryDetailResponse;
+import com.etiya.ecommercedemopair4.business.dtos.responses.parentCategory.AddParentCategoryResponse;
+import com.etiya.ecommercedemopair4.business.dtos.responses.parentCategory.ListParentCategoryResponse;
+import com.etiya.ecommercedemopair4.business.dtos.responses.parentCategory.ParentCategoryDetailResponse;
+import com.etiya.ecommercedemopair4.core.internationalization.MessageService;
 import com.etiya.ecommercedemopair4.core.utilities.mappers.ModelMapperService;
 import com.etiya.ecommercedemopair4.core.utilities.result.DataResult;
 import com.etiya.ecommercedemopair4.entities.concretes.ParentCategory;
@@ -21,6 +23,8 @@ public class ParentCategoryManager implements ParentCategoryService {
     private ParentCategoryDao parentCategoryDao;
     private ModelMapperService modelMapperService;
 
+    private MessageService messageService;
+
     @Override
     public List<ListParentCategoryResponse> getAll() {
         return parentCategoryDao.getAll();
@@ -33,7 +37,7 @@ public class ParentCategoryManager implements ParentCategoryService {
         parentCategoryDao.save(parentCategory);
 
         AddParentCategoryResponse response = this.modelMapperService.forResponse().map(parentCategory, AddParentCategoryResponse.class);
-        return new DataResult<AddParentCategoryResponse>(response, true, "ParentCategory eklendi.");
+        return new DataResult<AddParentCategoryResponse>(response, true, messageService.getMessage(Messages.ParentCategory.ParentCategoryAdded));
     }
 
     @Override

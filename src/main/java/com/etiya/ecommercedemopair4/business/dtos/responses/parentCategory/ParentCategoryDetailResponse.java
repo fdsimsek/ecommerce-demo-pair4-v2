@@ -1,4 +1,4 @@
-package com.etiya.ecommercedemopair4.business.dtos.responses.parentcategory;
+package com.etiya.ecommercedemopair4.business.dtos.responses.parentCategory;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

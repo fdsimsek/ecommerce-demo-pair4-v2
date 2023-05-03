@@ -8,6 +8,9 @@ import com.etiya.ecommercedemopair4.business.dtos.responses.order.OrderDetailRes
 import com.etiya.ecommercedemopair4.core.utilities.result.DataResult;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,6 +25,13 @@ public class OrdersController {
     @PostMapping()
     public DataResult<AddOrderResponse> add(@Valid @RequestBody AddOrderRequest addOrderRequest) {
         return orderService.add(addOrderRequest);
+    }
+
+    @GetMapping("getWithPagination")
+    public DataResult<Page<ListOrderResponse>> getAll(@RequestParam("page") int page, @RequestParam("pageSize") int pageSize) {
+        Pageable pageable = PageRequest.of(page, pageSize);
+        //Business katmanı
+        return orderService.getAllWithPagination(pageable);
     }
 
     @GetMapping()

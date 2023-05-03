@@ -1,4 +1,4 @@
-package com.etiya.ecommercedemopair4.business.dtos.requests.orderstatus;
+package com.etiya.ecommercedemopair4.business.dtos.requests.orderStatus;
 
 import lombok.*;
 

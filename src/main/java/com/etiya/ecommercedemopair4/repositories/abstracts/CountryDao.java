@@ -3,12 +3,17 @@ package com.etiya.ecommercedemopair4.repositories.abstracts;
 import com.etiya.ecommercedemopair4.business.dtos.responses.country.CountryDetailResponse;
 import com.etiya.ecommercedemopair4.business.dtos.responses.country.ListCountryResponse;
 import com.etiya.ecommercedemopair4.entities.concretes.Country;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
 public interface CountryDao extends JpaRepository<Country, Integer> {
+
+    Country findByCountryName(String countryName);
+    boolean existsCountryById(int id);
     @Query(value = "SELECT new " +
             "com.etiya.ecommercedemopair4.business.dtos.responses.country.ListCountryResponse(C.id, C.countryName) " +
             "from Country C")
@@ -18,4 +23,9 @@ public interface CountryDao extends JpaRepository<Country, Integer> {
             ".CountryDetailResponse(c.id, c.countryName) " +
             "from Country c where c.id = :id")
     CountryDetailResponse getById(int id);
+
+    @Query(value = "SELECT new " +
+            "com.etiya.ecommercedemopair4.business.dtos.responses.country.ListCountryResponse(C.id, C.countryName) " +
+            "from Country C")
+    Page<ListCountryResponse> getAll(Pageable pageable);
 }

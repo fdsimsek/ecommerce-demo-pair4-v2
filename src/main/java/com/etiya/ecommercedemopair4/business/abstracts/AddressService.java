@@ -5,13 +5,19 @@ import com.etiya.ecommercedemopair4.business.dtos.responses.address.AddAddressRe
 import com.etiya.ecommercedemopair4.business.dtos.responses.address.AddressDetailResponse;
 import com.etiya.ecommercedemopair4.business.dtos.responses.address.ListAddressResponse;
 import com.etiya.ecommercedemopair4.core.utilities.result.DataResult;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
 public interface AddressService {
-    List<ListAddressResponse> getAll();
+    DataResult<List<ListAddressResponse>> getAll();
+
+    DataResult<Page<ListAddressResponse>> getAllWithPagination(Pageable pageable);
 
     DataResult<AddAddressResponse> add(AddAddressRequest addAddressRequest);
 
-    AddressDetailResponse getById(int id);
+    DataResult<AddressDetailResponse> getById(int id);
+
+
 }

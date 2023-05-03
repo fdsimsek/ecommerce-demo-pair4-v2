@@ -1,4 +1,4 @@
-package com.etiya.ecommercedemopair4.business.dtos.responses.parentcategory;
+package com.etiya.ecommercedemopair4.business.dtos.responses.shippingMethod;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ListParentCategoryResponse {
+public class ShippingMethodDetailResponse {
     private int id;
     private String name;
+    private double shippingPrice;
 }

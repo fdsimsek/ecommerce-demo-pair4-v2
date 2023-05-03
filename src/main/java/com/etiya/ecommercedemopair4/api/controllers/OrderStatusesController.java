@@ -1,10 +1,10 @@
 package com.etiya.ecommercedemopair4.api.controllers;
 
 import com.etiya.ecommercedemopair4.business.abstracts.OrderStatusService;
-import com.etiya.ecommercedemopair4.business.dtos.requests.orderstatus.AddOrderStatusRequest;
-import com.etiya.ecommercedemopair4.business.dtos.responses.orderstatus.AddOrderStatusResponse;
-import com.etiya.ecommercedemopair4.business.dtos.responses.orderstatus.ListOrderStatusResponse;
-import com.etiya.ecommercedemopair4.business.dtos.responses.orderstatus.OrderStatusDetailResponse;
+import com.etiya.ecommercedemopair4.business.dtos.requests.orderStatus.AddOrderStatusRequest;
+import com.etiya.ecommercedemopair4.business.dtos.responses.orderStatus.AddOrderStatusResponse;
+import com.etiya.ecommercedemopair4.business.dtos.responses.orderStatus.ListOrderStatusResponse;
+import com.etiya.ecommercedemopair4.business.dtos.responses.orderStatus.OrderStatusDetailResponse;
 import com.etiya.ecommercedemopair4.core.utilities.result.DataResult;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
