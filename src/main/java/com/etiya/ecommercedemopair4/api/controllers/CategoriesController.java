@@ -26,7 +26,7 @@ public class CategoriesController {
     private CategoryService categoryService;
 
     @GetMapping()
-    public List<ListCategoryResponse> getAll() {
+    public DataResult<List<ListCategoryResponse>> getAll() {
         //Business katmanı
         return categoryService.getAll();
     }
@@ -49,7 +49,7 @@ public class CategoriesController {
     }
 
     @GetMapping("{id}")
-    public CategoryDetailResponse getById(@PathVariable int id) {
+    public DataResult<CategoryDetailResponse> getById(@PathVariable int id) {
         return categoryService.getById(id);
     }
 }

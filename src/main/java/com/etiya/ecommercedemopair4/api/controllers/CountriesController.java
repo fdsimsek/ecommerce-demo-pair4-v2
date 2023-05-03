@@ -24,7 +24,7 @@ public class CountriesController {
     private CountrySevice countrySevice;
 
     @GetMapping()
-    public List<ListCountryResponse> getAll() {
+    public DataResult<List<ListCountryResponse>> getAll() {
         return countrySevice.getAll();
     }
 
@@ -41,7 +41,7 @@ public class CountriesController {
     }
 
     @GetMapping("{id}")
-    public CountryDetailResponse getById(@PathVariable int id) {
+    public DataResult<CountryDetailResponse> getById(@PathVariable int id) {
         return countrySevice.getById(id);
     }
 }

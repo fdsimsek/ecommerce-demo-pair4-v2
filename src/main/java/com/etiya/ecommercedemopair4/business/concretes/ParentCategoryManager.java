@@ -9,9 +9,12 @@ import com.etiya.ecommercedemopair4.business.dtos.responses.parentCategory.Paren
 import com.etiya.ecommercedemopair4.core.internationalization.MessageService;
 import com.etiya.ecommercedemopair4.core.utilities.mappers.ModelMapperService;
 import com.etiya.ecommercedemopair4.core.utilities.result.DataResult;
+import com.etiya.ecommercedemopair4.core.utilities.result.SuccessDataResult;
 import com.etiya.ecommercedemopair4.entities.concretes.ParentCategory;
 import com.etiya.ecommercedemopair4.repositories.abstracts.ParentCategoryDao;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,8 +29,13 @@ public class ParentCategoryManager implements ParentCategoryService {
     private MessageService messageService;
 
     @Override
-    public List<ListParentCategoryResponse> getAll() {
-        return parentCategoryDao.getAll();
+    public DataResult<List<ListParentCategoryResponse>> getAll() {
+        return new SuccessDataResult<>(parentCategoryDao.getAll());
+    }
+
+    @Override
+    public DataResult<Page<ListParentCategoryResponse>> getAllWithPagination(Pageable pageable) {
+        return new SuccessDataResult<>(parentCategoryDao.getAll(pageable));
     }
 
     @Override
@@ -41,7 +49,7 @@ public class ParentCategoryManager implements ParentCategoryService {
     }
 
     @Override
-    public ParentCategoryDetailResponse getById(int id) {
-        return parentCategoryDao.getById(id);
+    public DataResult<ParentCategoryDetailResponse> getById(int id) {
+        return new SuccessDataResult<>(parentCategoryDao.getById(id));
     }
 }

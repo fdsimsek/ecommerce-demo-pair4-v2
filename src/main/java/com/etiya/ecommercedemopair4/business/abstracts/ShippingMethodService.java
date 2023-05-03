@@ -5,14 +5,17 @@ import com.etiya.ecommercedemopair4.business.dtos.responses.shippingMethod.AddSh
 import com.etiya.ecommercedemopair4.business.dtos.responses.shippingMethod.ListShippingMethodResponse;
 import com.etiya.ecommercedemopair4.business.dtos.responses.shippingMethod.ShippingMethodDetailResponse;
 import com.etiya.ecommercedemopair4.core.utilities.result.DataResult;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
 public interface ShippingMethodService {
 
-    List<ListShippingMethodResponse> getAll();
+    DataResult<List<ListShippingMethodResponse>> getAll();
 
+    DataResult<Page<ListShippingMethodResponse>> getAllWithPagination(Pageable pageable);
     DataResult<AddShippingMethodResponse> add(AddShippingMethodRequest addShippingMethodRequest);
 
-    ShippingMethodDetailResponse getById(int id);
+    DataResult<ShippingMethodDetailResponse> getById(int id);
 }

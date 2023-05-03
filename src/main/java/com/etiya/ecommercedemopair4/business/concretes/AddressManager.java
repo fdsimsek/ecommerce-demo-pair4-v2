@@ -66,7 +66,6 @@ public class AddressManager implements AddressService {
         if(!countryExists.isSuccess()) {
             throw new BusinessException(messageService.getMessage(Messages.Country.CountryDoesNotExistsWithGivenId));
         }
-
     }
 
 

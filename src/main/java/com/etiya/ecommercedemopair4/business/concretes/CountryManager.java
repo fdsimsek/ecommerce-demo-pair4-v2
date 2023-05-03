@@ -32,8 +32,8 @@ public class CountryManager implements CountrySevice {
     private final MessageService messageService;
 
     @Override
-    public List<ListCountryResponse> getAll() {
-        return countryDao.getAll();
+    public DataResult<List<ListCountryResponse>> getAll() {
+        return new SuccessDataResult<>(countryDao.getAll());
     }
 
     @Override
@@ -56,8 +56,8 @@ public class CountryManager implements CountrySevice {
     }
 
     @Override
-    public CountryDetailResponse getById(int id) {
-        return countryDao.getById(id);
+    public DataResult<CountryDetailResponse> getById(int id) {
+        return new SuccessDataResult<>(countryDao.getById(id));
     }
 
     @Override

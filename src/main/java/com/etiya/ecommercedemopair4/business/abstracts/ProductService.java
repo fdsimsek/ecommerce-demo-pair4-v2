@@ -7,16 +7,20 @@ import com.etiya.ecommercedemopair4.business.dtos.responses.product.ListProductR
 import com.etiya.ecommercedemopair4.business.dtos.responses.product.ProductDetailResponse;
 import com.etiya.ecommercedemopair4.business.dtos.responses.product.UpdateProductResponse;
 import com.etiya.ecommercedemopair4.core.utilities.result.DataResult;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
 public interface ProductService {
 
-    List<ListProductResponse> getAll();
+    DataResult<List<ListProductResponse>> getAll();
+
+    DataResult<Page<ListProductResponse>> getAllWithPagination(Pageable pageable);
 
     DataResult<AddProductResponse> add(AddProductRequest addProductRequest);
 
     DataResult<UpdateProductResponse> update(UpdateProductRequest updateProductRequest);
 
-    ProductDetailResponse getById(int id);
+    DataResult<ProductDetailResponse> getById(int id);
 }

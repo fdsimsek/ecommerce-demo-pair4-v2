@@ -10,6 +10,9 @@ import com.etiya.ecommercedemopair4.business.dtos.responses.product.UpdateProduc
 import com.etiya.ecommercedemopair4.core.utilities.result.DataResult;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,12 +34,19 @@ public class ProductsController {
     }
 
     @GetMapping()
-    public List<ListProductResponse> getAll() {
+    public DataResult<List<ListProductResponse>> getAll() {
         return productService.getAll();
     }
 
+    @GetMapping("getWithPagination")
+    public DataResult<Page<ListProductResponse>> getAll(@RequestParam("page") int page, @RequestParam("pageSize") int pageSize) {
+        Pageable pageable = PageRequest.of(page, pageSize);
+        //Business katmanı
+        return productService.getAllWithPagination(pageable);
+    }
+
     @GetMapping("{id}")
-    public ProductDetailResponse getById(@PathVariable int id) {
+    public DataResult<ProductDetailResponse> getById(@PathVariable int id) {
         return productService.getById(id);
     }
 

@@ -14,13 +14,13 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface CategoryService {
-    List<ListCategoryResponse> getAll();
+    DataResult<List<ListCategoryResponse>> getAll();
     DataResult<Page<ListCategoryResponse>> getAllWithPagination(Pageable pageable);
 
     DataResult<AddCategoryResponse> add(AddCategoryRequest addCategoryRequest) throws Exception;
 
     DataResult<UpdateCategoryResponse> update(UpdateCategoryRequest updateCategoryRequest);
-    CategoryDetailResponse getById(int id);
+    DataResult<CategoryDetailResponse> getById(int id);
 
     Result categoryWithIdShouldExixts(int categoryId);
 

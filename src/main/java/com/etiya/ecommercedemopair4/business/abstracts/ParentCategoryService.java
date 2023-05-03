@@ -5,15 +5,19 @@ import com.etiya.ecommercedemopair4.business.dtos.responses.parentCategory.AddPa
 import com.etiya.ecommercedemopair4.business.dtos.responses.parentCategory.ListParentCategoryResponse;
 import com.etiya.ecommercedemopair4.business.dtos.responses.parentCategory.ParentCategoryDetailResponse;
 import com.etiya.ecommercedemopair4.core.utilities.result.DataResult;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
 public interface ParentCategoryService {
 
-    List<ListParentCategoryResponse> getAll();
+    DataResult<List<ListParentCategoryResponse>> getAll();
+
+    DataResult<Page<ListParentCategoryResponse>> getAllWithPagination(Pageable pageable);
 
     DataResult<AddParentCategoryResponse> add(AddParentCategoryRequest addParentCategoryRequest);
 
-    ParentCategoryDetailResponse getById(int id);
+    DataResult<ParentCategoryDetailResponse> getById(int id);
 
 }

@@ -8,6 +8,9 @@ import com.etiya.ecommercedemopair4.business.dtos.responses.shippingMethod.Shipp
 import com.etiya.ecommercedemopair4.core.utilities.result.DataResult;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,12 +28,19 @@ public class ShippingMethodsController {
     }
 
     @GetMapping()
-    public List<ListShippingMethodResponse> getAll() {
+    public DataResult<List<ListShippingMethodResponse>> getAll() {
         return shippingMethodService.getAll();
     }
 
+    @GetMapping("getWithPagination")
+    public DataResult<Page<ListShippingMethodResponse>> getAll(@RequestParam("page") int page, @RequestParam("pageSize") int pageSize) {
+        Pageable pageable = PageRequest.of(page, pageSize);
+        //Business katmanı
+        return shippingMethodService.getAllWithPagination(pageable);
+    }
+
     @GetMapping("{id}")
-    public ShippingMethodDetailResponse getById(@PathVariable int id) {
+    public DataResult<ShippingMethodDetailResponse> getById(@PathVariable int id) {
         return shippingMethodService.getById(id);
     }
 }

@@ -16,8 +16,8 @@ import com.etiya.ecommercedemopair4.core.utilities.result.SuccessDataResult;
 import com.etiya.ecommercedemopair4.entities.concretes.Product;
 import com.etiya.ecommercedemopair4.repositories.abstracts.ProductDao;
 import lombok.AllArgsConstructor;
-import org.springframework.context.MessageSource;
-import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -60,13 +60,18 @@ public class ProductManager implements ProductService {
     }
 
     @Override
-    public ProductDetailResponse getById(int id) {
-        return productDao.getById(id);
+    public DataResult<ProductDetailResponse> getById(int id) {
+        return new SuccessDataResult<>(productDao.getById(id));
     }
 
     @Override
-    public List<ListProductResponse> getAll() {
-        return productDao.getAll();
+    public DataResult<List<ListProductResponse>> getAll() {
+        return new SuccessDataResult<>(productDao.getAll());
+    }
+
+    @Override
+    public DataResult<Page<ListProductResponse>> getAllWithPagination(Pageable pageable) {
+        return new SuccessDataResult<>(productDao.getAll(pageable));
     }
 }
 //Product nesnesi üretmeniz ve maplememiz

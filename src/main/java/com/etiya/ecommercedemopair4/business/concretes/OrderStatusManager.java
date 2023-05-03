@@ -13,6 +13,8 @@ import com.etiya.ecommercedemopair4.core.utilities.result.SuccessDataResult;
 import com.etiya.ecommercedemopair4.entities.concretes.OrderStatus;
 import com.etiya.ecommercedemopair4.repositories.abstracts.OrderStatusDao;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,8 +30,13 @@ public class OrderStatusManager implements OrderStatusService {
     private final MessageService messageService;
 
     @Override
-    public List<ListOrderStatusResponse> getAll() {
-        return orderStatusDao.getAll();
+    public DataResult<List<ListOrderStatusResponse>> getAll() {
+        return new SuccessDataResult<>(orderStatusDao.getAll());
+    }
+
+    @Override
+    public DataResult<Page<ListOrderStatusResponse>> getAllWithPagination(Pageable pageable) {
+        return new SuccessDataResult<>(orderStatusDao.getAll(pageable));
     }
 
     @Override
@@ -44,7 +51,7 @@ public class OrderStatusManager implements OrderStatusService {
     }
 
     @Override
-    public OrderStatusDetailResponse getById(int id) {
-        return orderStatusDao.getById(id);
+    public DataResult<OrderStatusDetailResponse> getById(int id) {
+        return new SuccessDataResult<>(orderStatusDao.getById(id));
     }
 }

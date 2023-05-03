@@ -1,15 +1,21 @@
 package com.etiya.ecommercedemopair4.business.concretes;
 
+import com.etiya.ecommercedemopair4.business.abstracts.CustomerService;
 import com.etiya.ecommercedemopair4.business.abstracts.OrderService;
 import com.etiya.ecommercedemopair4.business.constants.Messages;
 import com.etiya.ecommercedemopair4.business.dtos.requests.order.AddOrderRequest;
+import com.etiya.ecommercedemopair4.business.dtos.requests.order.UpdateOrderRequest;
 import com.etiya.ecommercedemopair4.business.dtos.responses.order.AddOrderResponse;
 import com.etiya.ecommercedemopair4.business.dtos.responses.order.ListOrderResponse;
 import com.etiya.ecommercedemopair4.business.dtos.responses.order.OrderDetailResponse;
+import com.etiya.ecommercedemopair4.business.dtos.responses.order.UpdateOrderResponse;
+import com.etiya.ecommercedemopair4.core.exceptions.types.BusinessException;
 import com.etiya.ecommercedemopair4.core.internationalization.MessageService;
 import com.etiya.ecommercedemopair4.core.utilities.mappers.ModelMapperService;
 import com.etiya.ecommercedemopair4.core.utilities.result.DataResult;
+import com.etiya.ecommercedemopair4.core.utilities.result.Result;
 import com.etiya.ecommercedemopair4.core.utilities.result.SuccessDataResult;
+import com.etiya.ecommercedemopair4.core.utilities.result.SuccessResult;
 import com.etiya.ecommercedemopair4.entities.concretes.Order;
 import com.etiya.ecommercedemopair4.repositories.abstracts.OrderDao;
 import lombok.AllArgsConstructor;
@@ -27,11 +33,12 @@ public class OrderManager implements OrderService {
 
     private final ModelMapperService modelMapperService;
 
+    private final CustomerService customerService;
     private final MessageService messageService;
 
     @Override
-    public List<ListOrderResponse> getAll() {
-        return orderDao.getAll();
+    public DataResult<List<ListOrderResponse>> getAll() {
+        return new SuccessDataResult<>(orderDao.getAll());
     }
 
     @Override
@@ -50,7 +57,30 @@ public class OrderManager implements OrderService {
     }
 
     @Override
-    public OrderDetailResponse getById(int id) {
-        return orderDao.getById(id);
+    public DataResult<UpdateOrderResponse> update(UpdateOrderRequest updateOrderRequest) {
+        Order order = this.modelMapperService.forRequest().map(updateOrderRequest, Order.class);
+        customerWithIdShouldExixts(updateOrderRequest.getCustomerId());
+        this.orderDao.save(order);
+
+        UpdateOrderResponse response = this.modelMapperService.forResponse().map(order, UpdateOrderResponse.class);
+        return new SuccessDataResult<>(response, messageService.getMessage(Messages.Order.OrderUpdated));
+    }
+
+    @Override
+    public DataResult<OrderDetailResponse> getById(int id) {
+        return new SuccessDataResult<>(orderDao.getById(id));
+    }
+
+    @Override
+    public Result delete(int id) {
+        orderDao.deleteById(id);
+        return new SuccessResult();
+    }
+
+    public void customerWithIdShouldExixts(int customerId) {
+        Result countryExists = customerService.customerWithIdShouldExixts(customerId);
+        if(!countryExists.isSuccess()) {
+            throw new BusinessException(messageService.getMessageWithParams(Messages.Customer.CustomerDoesNotExistsWithGivenId, customerId));
+        }
     }
 }

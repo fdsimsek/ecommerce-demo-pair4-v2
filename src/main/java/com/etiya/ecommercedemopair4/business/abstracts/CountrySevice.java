@@ -13,13 +13,13 @@ import java.util.List;
 
 public interface CountrySevice {
 
-    List<ListCountryResponse> getAll();
+    DataResult<List<ListCountryResponse>> getAll();
 
     DataResult<Page<ListCountryResponse>> getAllWithPagination(Pageable pageable);
 
     DataResult<AddCountryResponse> add(AddCountryRequest addCountryRequest);
 
-    CountryDetailResponse getById(int id);
+    DataResult<CountryDetailResponse> getById(int id);
 
     Result countryWithIdShouldExixts(int countryId);
 }

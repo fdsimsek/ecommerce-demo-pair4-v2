@@ -28,7 +28,7 @@ public class ProductCategoryManager implements ProductCategoryService {
         for (AddProductCategoryRequest request : addProductCategoryRequests) {
             ProductCategory productCategory = modelMapperService.forRequest().map(request, ProductCategory.class);
             Product product = new Product();
-            productCategory.setId(productId);
+            product.setId(productId);
             productCategory.setProduct(product);
             productCategoryDao.save(productCategory);
         }

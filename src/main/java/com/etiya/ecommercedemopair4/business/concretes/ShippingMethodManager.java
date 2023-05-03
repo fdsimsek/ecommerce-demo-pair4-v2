@@ -13,6 +13,8 @@ import com.etiya.ecommercedemopair4.core.utilities.result.SuccessDataResult;
 import com.etiya.ecommercedemopair4.entities.concretes.ShippingMethod;
 import com.etiya.ecommercedemopair4.repositories.abstracts.ShippingMethodDao;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,8 +29,13 @@ public class ShippingMethodManager implements ShippingMethodService {
 
     private final MessageService messageService;
     @Override
-    public List<ListShippingMethodResponse> getAll() {
-        return shippingMethodDao.getAll();
+    public DataResult<List<ListShippingMethodResponse>> getAll() {
+        return new SuccessDataResult<>(shippingMethodDao.getAll());
+    }
+
+    @Override
+    public DataResult<Page<ListShippingMethodResponse>> getAllWithPagination(Pageable pageable) {
+        return new SuccessDataResult<>(shippingMethodDao.getAll(pageable));
     }
 
     @Override
@@ -43,7 +50,7 @@ public class ShippingMethodManager implements ShippingMethodService {
     }
 
     @Override
-    public ShippingMethodDetailResponse getById(int id) {
-        return shippingMethodDao.getById(id);
+    public DataResult<ShippingMethodDetailResponse> getById(int id) {
+        return new SuccessDataResult<>(shippingMethodDao.getById(id));
     }
 }

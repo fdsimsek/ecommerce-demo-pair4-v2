@@ -8,6 +8,9 @@ import com.etiya.ecommercedemopair4.business.dtos.responses.parentCategory.Paren
 import com.etiya.ecommercedemopair4.core.utilities.result.DataResult;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,10 +20,10 @@ import java.util.List;
 @AllArgsConstructor
 public class ParentCategoriesController {
 
-    private ParentCategoryService parentCategoryService;
+    private final ParentCategoryService parentCategoryService;
 
     @GetMapping()
-    public List<ListParentCategoryResponse> getAll() {
+    public DataResult<List<ListParentCategoryResponse>> getAll() {
         return parentCategoryService.getAll();
     }
 
@@ -29,8 +32,15 @@ public class ParentCategoriesController {
         return parentCategoryService.add(addParentCategoryRequest);
     }
 
+    @GetMapping("getWithPagination")
+    public DataResult<Page<ListParentCategoryResponse>> getAll(@RequestParam("page") int page, @RequestParam("pageSize") int pageSize) {
+        Pageable pageable = PageRequest.of(page, pageSize);
+        //Business katmanı
+        return parentCategoryService.getAllWithPagination(pageable);
+    }
+
     @GetMapping("{id}")
-    public ParentCategoryDetailResponse getById(@PathVariable int id) {
+    public DataResult<ParentCategoryDetailResponse> getById(@PathVariable int id) {
         return parentCategoryService.getById(id);
     }
 }

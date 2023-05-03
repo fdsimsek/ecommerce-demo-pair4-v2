@@ -42,4 +42,8 @@ public class Messages {
     public static class ShippingMethod {
         public static final String ShippingMethodAdded = "shippingMethodAdded";
     }
+
+    public static class Customer {
+        public static final String CustomerDoesNotExistsWithGivenId = "customerDoesNotExistsWithGivenId";
+    }
 }

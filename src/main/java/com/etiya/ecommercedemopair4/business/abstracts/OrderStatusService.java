@@ -5,14 +5,18 @@ import com.etiya.ecommercedemopair4.business.dtos.responses.orderStatus.AddOrder
 import com.etiya.ecommercedemopair4.business.dtos.responses.orderStatus.ListOrderStatusResponse;
 import com.etiya.ecommercedemopair4.business.dtos.responses.orderStatus.OrderStatusDetailResponse;
 import com.etiya.ecommercedemopair4.core.utilities.result.DataResult;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
 public interface OrderStatusService {
 
-    List<ListOrderStatusResponse> getAll();
+    DataResult<List<ListOrderStatusResponse>> getAll();
+
+    DataResult<Page<ListOrderStatusResponse>> getAllWithPagination(Pageable pageable);
 
     DataResult<AddOrderStatusResponse> add(AddOrderStatusRequest addOrderStatusRequest);
 
-    OrderStatusDetailResponse getById(int id);
+    DataResult<OrderStatusDetailResponse> getById(int id);
 }

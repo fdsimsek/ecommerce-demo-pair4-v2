@@ -4,6 +4,7 @@ import com.etiya.ecommercedemopair4.business.dtos.requests.customer.AddCustomerR
 import com.etiya.ecommercedemopair4.business.dtos.requests.customer.UpdateCustomerRequest;
 import com.etiya.ecommercedemopair4.business.dtos.responses.customer.GetAllCustomersResponse;
 import com.etiya.ecommercedemopair4.business.dtos.responses.customer.GetByIdCustomerResponse;
+import com.etiya.ecommercedemopair4.core.utilities.result.Result;
 
 import java.util.List;
 
@@ -13,4 +14,6 @@ public interface CustomerService {
     void add(AddCustomerRequest addCustomerRequest);
     void update(UpdateCustomerRequest updateCustomerRequest);
     void delete(int id);
+
+    Result customerWithIdShouldExixts(int customerId);
 }

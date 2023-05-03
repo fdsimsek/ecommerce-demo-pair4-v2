@@ -3,6 +3,9 @@ package com.etiya.ecommercedemopair4.business.concretes;
 import com.etiya.ecommercedemopair4.business.dtos.requests.customer.UpdateCustomerRequest;
 import com.etiya.ecommercedemopair4.business.dtos.responses.customer.GetByIdCustomerResponse;
 import com.etiya.ecommercedemopair4.core.utilities.mappers.ModelMapperService;
+import com.etiya.ecommercedemopair4.core.utilities.result.ErrorResult;
+import com.etiya.ecommercedemopair4.core.utilities.result.Result;
+import com.etiya.ecommercedemopair4.core.utilities.result.SuccessResult;
 import com.etiya.ecommercedemopair4.repositories.abstracts.CustomerDao;
 import com.etiya.ecommercedemopair4.entities.concretes.Customer;
 import com.etiya.ecommercedemopair4.business.abstracts.CustomerService;
@@ -67,5 +70,13 @@ public class CustomerManager implements CustomerService {
 
         this.customerDao.deleteById(id);
 
+    }
+
+    @Override
+    public Result customerWithIdShouldExixts(int customerId) {
+        boolean isCustomerExists = customerDao.existsCustomerById(customerId);
+        if(isCustomerExists)
+            return new SuccessResult();
+        return new ErrorResult();
     }
 }

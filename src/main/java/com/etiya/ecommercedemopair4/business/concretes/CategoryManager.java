@@ -31,8 +31,8 @@ public class CategoryManager implements CategoryService {
     private final MessageService messageService;
 
     @Override
-    public List<ListCategoryResponse> getAll() {
-        return categoryDao.getAll();
+    public DataResult<List<ListCategoryResponse>> getAll() {
+        return new SuccessDataResult<>(categoryDao.getAll()) ;
     }
 
     @Override
@@ -62,7 +62,7 @@ public class CategoryManager implements CategoryService {
 //        response.setCategoryName(category.getCategoryName());
         //Auto
         AddCategoryResponse response = modelMapperService.forResponse().map(category, AddCategoryResponse.class);
-        return new DataResult<AddCategoryResponse>(response, true, messageService.getMessage(Messages.Category.CategoryAdded));
+        return new DataResult<>(response, true, messageService.getMessage(Messages.Category.CategoryAdded));
     }
 
     @Override
@@ -83,8 +83,8 @@ public class CategoryManager implements CategoryService {
     }
 
     @Override
-    public CategoryDetailResponse getById(int id) {
-        return categoryDao.getById(id);
+    public DataResult<CategoryDetailResponse> getById(int id) {
+        return new SuccessDataResult<>(categoryDao.getById(id));
     }
 
     @Override
