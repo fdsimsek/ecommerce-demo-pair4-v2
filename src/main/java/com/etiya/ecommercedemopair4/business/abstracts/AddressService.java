@@ -5,6 +5,7 @@ import com.etiya.ecommercedemopair4.business.dtos.responses.address.AddAddressRe
 import com.etiya.ecommercedemopair4.business.dtos.responses.address.AddressDetailResponse;
 import com.etiya.ecommercedemopair4.business.dtos.responses.address.ListAddressResponse;
 import com.etiya.ecommercedemopair4.core.utilities.result.DataResult;
+import com.etiya.ecommercedemopair4.core.utilities.result.Result;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -18,6 +19,8 @@ public interface AddressService {
     DataResult<AddAddressResponse> add(AddAddressRequest addAddressRequest);
 
     DataResult<AddressDetailResponse> getById(int id);
+
+    Result addressWithIdShouldExixts(int addressId);
 
 
 }

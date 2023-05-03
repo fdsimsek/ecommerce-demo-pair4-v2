@@ -5,6 +5,7 @@ import com.etiya.ecommercedemopair4.business.dtos.responses.orderStatus.AddOrder
 import com.etiya.ecommercedemopair4.business.dtos.responses.orderStatus.ListOrderStatusResponse;
 import com.etiya.ecommercedemopair4.business.dtos.responses.orderStatus.OrderStatusDetailResponse;
 import com.etiya.ecommercedemopair4.core.utilities.result.DataResult;
+import com.etiya.ecommercedemopair4.core.utilities.result.Result;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -19,4 +20,6 @@ public interface OrderStatusService {
     DataResult<AddOrderStatusResponse> add(AddOrderStatusRequest addOrderStatusRequest);
 
     DataResult<OrderStatusDetailResponse> getById(int id);
+
+    Result orderStatusWithIdShouldExixts(int orderStatusId);
 }

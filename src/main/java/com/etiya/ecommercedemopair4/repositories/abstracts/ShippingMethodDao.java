@@ -29,4 +29,6 @@ public interface ShippingMethodDao extends JpaRepository<ShippingMethod, Integer
             ".ListShippingMethodResponse(sm.id, sm.name, sm.shippingPrice)" +
             " from ShippingMethod sm")
     Page<ListShippingMethodResponse> getAll(Pageable pageable);
+
+    boolean existsShippingMethodById(int shippingMethodId);
 }

@@ -29,4 +29,5 @@ public interface OrderStatusDao extends JpaRepository<OrderStatus, Integer> {
             " from OrderStatus os")
     Page<ListOrderStatusResponse> getAll(Pageable pageable);
 
+    boolean existsOrderStatusById(int orderStatusId);
 }

@@ -8,8 +8,7 @@ import com.etiya.ecommercedemopair4.business.dtos.responses.shippingMethod.ListS
 import com.etiya.ecommercedemopair4.business.dtos.responses.shippingMethod.ShippingMethodDetailResponse;
 import com.etiya.ecommercedemopair4.core.internationalization.MessageService;
 import com.etiya.ecommercedemopair4.core.utilities.mappers.ModelMapperService;
-import com.etiya.ecommercedemopair4.core.utilities.result.DataResult;
-import com.etiya.ecommercedemopair4.core.utilities.result.SuccessDataResult;
+import com.etiya.ecommercedemopair4.core.utilities.result.*;
 import com.etiya.ecommercedemopair4.entities.concretes.ShippingMethod;
 import com.etiya.ecommercedemopair4.repositories.abstracts.ShippingMethodDao;
 import lombok.AllArgsConstructor;
@@ -52,5 +51,13 @@ public class ShippingMethodManager implements ShippingMethodService {
     @Override
     public DataResult<ShippingMethodDetailResponse> getById(int id) {
         return new SuccessDataResult<>(shippingMethodDao.getById(id));
+    }
+
+    @Override
+    public Result shippingMethodWithIdShouldExixts(int shippingMethodId) {
+        boolean isShippingMethod = shippingMethodDao.existsShippingMethodById(shippingMethodId);
+        if (isShippingMethod)
+            return new SuccessResult();
+        return new ErrorResult();
     }
 }

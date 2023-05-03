@@ -10,9 +10,7 @@ import com.etiya.ecommercedemopair4.business.dtos.responses.address.ListAddressR
 import com.etiya.ecommercedemopair4.core.exceptions.types.BusinessException;
 import com.etiya.ecommercedemopair4.core.internationalization.MessageService;
 import com.etiya.ecommercedemopair4.core.utilities.mappers.ModelMapperService;
-import com.etiya.ecommercedemopair4.core.utilities.result.DataResult;
-import com.etiya.ecommercedemopair4.core.utilities.result.Result;
-import com.etiya.ecommercedemopair4.core.utilities.result.SuccessDataResult;
+import com.etiya.ecommercedemopair4.core.utilities.result.*;
 import com.etiya.ecommercedemopair4.entities.concretes.Address;
 import com.etiya.ecommercedemopair4.repositories.abstracts.AddressDao;
 import lombok.AllArgsConstructor;
@@ -59,6 +57,14 @@ public class AddressManager implements AddressService {
     @Override
     public DataResult<AddressDetailResponse> getById(int id) {
         return new SuccessDataResult<>(addressDao.getById(id));
+    }
+
+    @Override
+    public Result addressWithIdShouldExixts(int addressId) {
+        boolean isAddressExists = addressDao.existsAddressById(addressId);
+        if (isAddressExists)
+            return new SuccessResult();
+        return new ErrorResult();
     }
 
     public void countryWithIdShouldExixts(int countryId) {

@@ -8,8 +8,7 @@ import com.etiya.ecommercedemopair4.business.dtos.responses.orderStatus.ListOrde
 import com.etiya.ecommercedemopair4.business.dtos.responses.orderStatus.OrderStatusDetailResponse;
 import com.etiya.ecommercedemopair4.core.internationalization.MessageService;
 import com.etiya.ecommercedemopair4.core.utilities.mappers.ModelMapperService;
-import com.etiya.ecommercedemopair4.core.utilities.result.DataResult;
-import com.etiya.ecommercedemopair4.core.utilities.result.SuccessDataResult;
+import com.etiya.ecommercedemopair4.core.utilities.result.*;
 import com.etiya.ecommercedemopair4.entities.concretes.OrderStatus;
 import com.etiya.ecommercedemopair4.repositories.abstracts.OrderStatusDao;
 import lombok.AllArgsConstructor;
@@ -53,5 +52,13 @@ public class OrderStatusManager implements OrderStatusService {
     @Override
     public DataResult<OrderStatusDetailResponse> getById(int id) {
         return new SuccessDataResult<>(orderStatusDao.getById(id));
+    }
+
+    @Override
+    public Result orderStatusWithIdShouldExixts(int orderStatusId) {
+        boolean isOrderStatus = orderStatusDao.existsOrderStatusById(orderStatusId);
+        if (isOrderStatus)
+            return new SuccessResult();
+        return new ErrorResult();
     }
 }

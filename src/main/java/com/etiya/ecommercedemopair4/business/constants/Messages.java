@@ -28,19 +28,23 @@ public class Messages {
     public static class Address {
         public static final String AddressListed = "addressListed";
         public static final String AddressAdded = "addressAdded";
+        public static final String AddressDoesNotExistsWithGivenId = "addressDoesNotExistsWithGivenId";
         public static final String AddressUpdated = "addressUpdated";
     }
 
     public static class OrderStatus {
         public static final String OrderStatusAdded = "orderStatusAdded";
+        public static final String OrderStatusDoesNotExistsWithGivenId = "orderStatusDoesNotExistsWithGivenId";
     }
 
     public static class ParentCategory {
         public static final String ParentCategoryAdded = "parentCategoryAdded";
+        public static final String ParentCategoryDoesNotExistsWithGivenId = "parentCategoryDoesNotExistsWithGivenId";
     }
 
     public static class ShippingMethod {
         public static final String ShippingMethodAdded = "shippingMethodAdded";
+        public static final String ShippingMethodDoesNotExistsWithGivenId = "shippingMethodDoesNotExistsWithGivenId";
     }
 
     public static class Customer {

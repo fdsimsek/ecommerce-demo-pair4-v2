@@ -30,4 +30,6 @@ public interface AddressDao extends JpaRepository<Address, Integer> {
             ".ListAddressResponse(a.id, a.addressField, a.city, a.postalCode, c.countryName)" +
             " from Address a JOIN a.country c")
     Page<ListAddressResponse> getAll(Pageable pageable);
+
+    boolean existsAddressById(int addressId);
 }

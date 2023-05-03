@@ -1,7 +1,6 @@
 package com.etiya.ecommercedemopair4.business.concretes;
 
-import com.etiya.ecommercedemopair4.business.abstracts.CustomerService;
-import com.etiya.ecommercedemopair4.business.abstracts.OrderService;
+import com.etiya.ecommercedemopair4.business.abstracts.*;
 import com.etiya.ecommercedemopair4.business.constants.Messages;
 import com.etiya.ecommercedemopair4.business.dtos.requests.order.AddOrderRequest;
 import com.etiya.ecommercedemopair4.business.dtos.requests.order.UpdateOrderRequest;
@@ -34,6 +33,13 @@ public class OrderManager implements OrderService {
     private final ModelMapperService modelMapperService;
 
     private final CustomerService customerService;
+
+    private final AddressService addressService;
+
+    private final ShippingMethodService shippingMethodService;
+
+    private final OrderStatusService orderStatusService;
+
     private final MessageService messageService;
 
     @Override
@@ -60,6 +66,9 @@ public class OrderManager implements OrderService {
     public DataResult<UpdateOrderResponse> update(UpdateOrderRequest updateOrderRequest) {
         Order order = this.modelMapperService.forRequest().map(updateOrderRequest, Order.class);
         customerWithIdShouldExixts(updateOrderRequest.getCustomerId());
+        addressWithIdShouldExixts(updateOrderRequest.getShippingAddressId());
+        shippingMethodWithIdShouldExixts(updateOrderRequest.getShippingMethodId());
+        orderStatusWithIdShouldExixts(updateOrderRequest.getOrderStatusId());
         this.orderDao.save(order);
 
         UpdateOrderResponse response = this.modelMapperService.forResponse().map(order, UpdateOrderResponse.class);
@@ -81,6 +90,27 @@ public class OrderManager implements OrderService {
         Result countryExists = customerService.customerWithIdShouldExixts(customerId);
         if(!countryExists.isSuccess()) {
             throw new BusinessException(messageService.getMessageWithParams(Messages.Customer.CustomerDoesNotExistsWithGivenId, customerId));
+        }
+    }
+
+    public void addressWithIdShouldExixts(int addressId) {
+        Result addressExists = addressService.addressWithIdShouldExixts(addressId);
+        if(!addressExists.isSuccess()) {
+            throw new BusinessException(messageService.getMessageWithParams(Messages.Address.AddressDoesNotExistsWithGivenId, addressId));
+        }
+    }
+
+    public void shippingMethodWithIdShouldExixts(int shippingMethodId) {
+        Result shippingMethodExists = shippingMethodService.shippingMethodWithIdShouldExixts(shippingMethodId);
+        if(!shippingMethodExists.isSuccess()) {
+            throw new BusinessException(messageService.getMessageWithParams(Messages.ShippingMethod.ShippingMethodDoesNotExistsWithGivenId, shippingMethodId));
+        }
+    }
+
+    public void orderStatusWithIdShouldExixts(int orderStatusId) {
+        Result orderStatusExists = orderStatusService.orderStatusWithIdShouldExixts(orderStatusId);
+        if(!orderStatusExists.isSuccess()) {
+            throw new BusinessException(messageService.getMessageWithParams(Messages.OrderStatus.OrderStatusDoesNotExistsWithGivenId, orderStatusId));
         }
     }
 }
