@@ -39,10 +39,12 @@ public class ProductManager implements ProductService {
 
 
         Product product = this.modelMapperService.forRequest().map(addProductRequest, Product.class);
+        product.setId(0);
         // Verilen categoryId ile bir kategori verisi bulunmalıdır
         // CategoryDao
         // Her bir manager kendi entitysi dışında diğer entitylerin DAO'larını implemente edemez!!
         //        categoryWithIdShouldExists();
+
         this.productDao.save(product);
         productCategoryService.addRange(product.getId(), addProductRequest.getProductCategory());
 

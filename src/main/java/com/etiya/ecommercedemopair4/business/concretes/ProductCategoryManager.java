@@ -18,7 +18,6 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-@NoArgsConstructor
 public class ProductCategoryManager implements ProductCategoryService {
     private ProductCategoryDao productCategoryDao;
     private ModelMapperService modelMapperService;
@@ -27,9 +26,7 @@ public class ProductCategoryManager implements ProductCategoryService {
     public Result addRange(int productId, List<AddProductCategoryRequest> addProductCategoryRequests) {
         for (AddProductCategoryRequest request : addProductCategoryRequests) {
             ProductCategory productCategory = modelMapperService.forRequest().map(request, ProductCategory.class);
-            Product product = new Product();
-            product.setId(productId);
-            productCategory.setProduct(product);
+            productCategory.getProduct().setId(productId);
             productCategoryDao.save(productCategory);
         }
         return new SuccessResult();
