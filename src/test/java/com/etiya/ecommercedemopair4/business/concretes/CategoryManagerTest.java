@@ -1,10 +1,12 @@
 package com.etiya.ecommercedemopair4.business.concretes;
 
+import com.etiya.ecommercedemopair4.business.constants.Messages;
 import com.etiya.ecommercedemopair4.business.dtos.requests.category.UpdateCategoryRequest;
 import com.etiya.ecommercedemopair4.business.dtos.responses.category.ListCategoryResponse;
 import com.etiya.ecommercedemopair4.business.dtos.responses.category.UpdateCategoryResponse;
 import com.etiya.ecommercedemopair4.core.exceptions.types.BusinessException;
 import com.etiya.ecommercedemopair4.core.exceptions.types.NotFoundException;
+import com.etiya.ecommercedemopair4.core.internationalization.MessageManager;
 import com.etiya.ecommercedemopair4.core.internationalization.MessageService;
 import com.etiya.ecommercedemopair4.core.utilities.mappers.ModelMapperManager;
 import com.etiya.ecommercedemopair4.core.utilities.mappers.ModelMapperService;
@@ -34,24 +36,23 @@ class CategoryManagerTest {
     CategoryDao categoryDao;
     ModelMapperService modelMapperService;
     MessageService messageService;
+
+    MessageSource messageSource;
     CategoryManager categoryManager;
 
     // Mockito
     @BeforeEach
     void setUp() {
         // Her test öncesi çalıştırılacak alan
-
         modelMapperService = new ModelMapperManager(new ModelMapper());
+        messageSource = getBundleMessageSource();
+        messageService = new MessageManager(messageSource);
         categoryDao = mock(CategoryDao.class);
         categoryManager = new CategoryManager(categoryDao, modelMapperService, messageService);
     }
 
     ResourceBundleMessageSource getBundleMessageSource() {
-        // Veritabanı?
-        // Dosya
-        // API
         ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-
         messageSource.setBasename("messages");
         return messageSource;
     }
@@ -83,10 +84,12 @@ class CategoryManagerTest {
         expectedData.add(new ListCategoryResponse(1,1,"Giyim"));
         expectedData.add(new ListCategoryResponse(1,1,"Deneme"));
 
-        when(categoryDao.getAll()).thenReturn(expectedData);
-        List<ListCategoryResponse> actualResult = categoryManager.getAll();
+        DataResult<List<ListCategoryResponse>> expectedDataResult = new SuccessDataResult<>(expectedData);
 
-        assert expectedData.size() == actualResult.size();
+        when(categoryDao.getAll()).thenReturn(expectedDataResult.getData());
+        DataResult<List<ListCategoryResponse>> actualResult = categoryManager.getAll();
+
+        assert actualResult.getData().size() == expectedDataResult.getData().size();
     }
 
     @Test
