@@ -78,7 +78,7 @@ public class CategoryManager implements CategoryService {
         categoryDao.save(category1);
 
         UpdateCategoryResponse response = modelMapperService.forResponse().map(category1, UpdateCategoryResponse.class);
-        return new DataResult<>(response, true ,messageService.getMessage(Messages.Category.CategoryUpdated));
+        return new SuccessDataResult<>(response,messageService.getMessage(Messages.Category.CategoryUpdated));
 
     }
 

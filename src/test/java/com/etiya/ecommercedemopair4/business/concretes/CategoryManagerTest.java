@@ -121,8 +121,8 @@ class CategoryManagerTest {
 
         DataResult<UpdateCategoryResponse> actualResponse = categoryManager.update(request);
         ParentCategory parentCategory = new ParentCategory();
-        DataResult<UpdateCategoryResponse> expectedResponse =
-                new DataResult<>(new UpdateCategoryResponse(4, parentCategory,"Deneme"), true, messageService.getMessage(Messages.Category.CategoryUpdated));
+        SuccessDataResult<UpdateCategoryResponse> expectedResponse =
+                new SuccessDataResult<>(new UpdateCategoryResponse(4, parentCategory,"Deneme"), messageService.getMessage(Messages.Category.CategoryUpdated));
         assert actualResponse.equals(expectedResponse);
     }
 }
