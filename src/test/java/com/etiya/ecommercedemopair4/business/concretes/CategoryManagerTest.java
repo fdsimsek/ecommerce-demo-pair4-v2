@@ -36,7 +36,6 @@ class CategoryManagerTest {
     CategoryDao categoryDao;
     ModelMapperService modelMapperService;
     MessageService messageService;
-
     MessageSource messageSource;
     CategoryManager categoryManager;
 
@@ -97,7 +96,7 @@ class CategoryManagerTest {
         // findById
         when(categoryDao.findById(any())).thenReturn(Optional.ofNullable(null));
         UpdateCategoryRequest request = new UpdateCategoryRequest(8, 1,"Giyim");
-        categoryManager.update(request);
+        //categoryManager.update(request);
         assertThrows(NotFoundException.class,()->{
             categoryManager.update(request);
         });
@@ -122,8 +121,8 @@ class CategoryManagerTest {
 
         DataResult<UpdateCategoryResponse> actualResponse = categoryManager.update(request);
         ParentCategory parentCategory = new ParentCategory();
-        SuccessDataResult<UpdateCategoryResponse> expectedResponse =
-                new SuccessDataResult<>(new UpdateCategoryResponse(4, parentCategory,"Deneme"));
+        DataResult<UpdateCategoryResponse> expectedResponse =
+                new DataResult<>(new UpdateCategoryResponse(4, parentCategory,"Deneme"), true, messageService.getMessage(Messages.Category.CategoryUpdated));
         assert actualResponse.equals(expectedResponse);
     }
 }

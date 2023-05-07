@@ -4,7 +4,7 @@ import lombok.Getter;
 
 //Generic => herhangi bir tip olabilir
 @Getter
-public class DataResult<T> extends Result{
+public class  DataResult<T> extends Result{
 
     private T data;
 
